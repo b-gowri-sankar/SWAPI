@@ -6,7 +6,6 @@ const CardLoad = (props) => {
 
     if (status === 'loading')
         return null
-    // console.log(Data,'this is Data')
     return (
         <>
         <div className='cardList'>
