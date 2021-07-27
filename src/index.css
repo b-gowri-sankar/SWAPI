@@ -1,13 +1,105 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: beige;
+  max-width: 80%;
+  margin: auto;
+}
+
+.cardList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  background-color: white;
+  border: 2px solid #e4e4e4;
+  margin: 10px;
+  padding: 15px;
+  flex-basis: 45%;
+  justify-content: space-between;
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+}
+.right {
+  align-self: center;
+  background-color: rgba(128, 128, 128, 0.2);
+  padding: 10px;
+  border-radius: 12px;
+}
+.left {
+  margin-right: 20px;
+  align-self: center;
+}
+
+.pages {
+  display: flex;
+  padding: 10px;
+}
+
+.pages button {
+  border: 2px solid black;
+  background-color: beige;
+  color: black;
+  padding: 5px 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 750px) {
+  .cardList {
+    display: block;
+  }
+}
+
+.star_wars_card {
+  display: block;
+  background-color: whitesmoke;
+  padding: 20px;
+  border: 1px solid #e4e4e4;
+  margin-top: 10px;
+}
+
+.star_wars_card div {
+  display: block;
+  justify-content: space-between;
+}
+
+.star_wars_card div p {
+  margin: 10px;
+}
+
+.search {
+  display: flex;
+  background-color: white;
+  border: 1px solid #e4e4e4;
+  padding: 10px;
+}
+
+.search img {
+  height: 5vh;
+  width: 100%;
+  flex-basis: 5%;
+}
+
+.search form {
+  align-self: center;
+  width: 100%;
+}
+
+.search form input {
+  border: none;
+  width: 100%;
+  padding: 10px;
+}
+
+.search form input:focus {
+  outline: none;
 }

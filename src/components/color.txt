@@ -1,0 +1,2 @@
+#e2bfb0
+font: lato
