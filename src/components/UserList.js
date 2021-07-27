@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery, QueryClient, QueryClientProvider } from 'react-query';
-import Search from './Search';
+// import Search from './Search';
 import CardLoad from './CardLoad';
 
 // const fetchPeoples = async (key, page) => {
@@ -10,7 +10,7 @@ import CardLoad from './CardLoad';
 const queryClient = new QueryClient();
 const fetchPeoples = async (key) => {
     // console.log(page)
-    console.log('it is executing how many times')
+    // console.log('it is executing how many times')
     const res = await fetch(`${key.queryKey[1]}`);
     return res.json();
   }
@@ -18,13 +18,23 @@ const fetchPeoples = async (key) => {
 
 
 const UserList = () => {
-    const url='http://swapi.dev/api/people/?page=1'
+    const [count, setCount] = React.useState(1);
+    const url = 'https://swapi.dev/api/people/?search=';
+    const [placeholder, setPlaceholder] = React.useState('')
+    const [search, setSearch] = React.useState('')
     const [page, setPages] = React.useState(url);
-    const { data, status }= useQuery(['planets', page], fetchPeoples, {
+    let Data = {
+        results:[]
+    }
+    const { data, status }= useQuery(['planets', page+search], fetchPeoples, {
         keepPreviousData: true,
     });
     
-    
+    Data = {...Data, ...data}
+    // const [showData, setShowData] = React.useState({
+    //     people: true,
+    //     filter: false,
+    // })
     //consol.log data will display result, next
     //console.log(data.data.next) display next value
     //console.log(data.data.results) wil be array of people
@@ -35,8 +45,21 @@ const UserList = () => {
     }
     return (
         <>
-            <Search />
-            <CardLoad Data={data} setPages={ setPages }/>
+            <div className='search'>
+                <img src="./Images/search.svg" alt='search icon' />
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    setPages(url)
+                    setCount(1)
+                    setSearch(placeholder)
+                }}>
+                    <input type='text' value={placeholder} id='search' placeholder='Search Task'
+                        onChange={(e) => {
+                            setPlaceholder(`${e.target.value}`)
+                    }} />
+                </form>
+            </div>
+            <CardLoad Data={Data} setPages={setPages} status={status} setSearch={setSearch} count={count} setCount={ setCount }/>
         </>
     )
 }

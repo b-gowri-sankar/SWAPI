@@ -2,8 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const CardLoad = (props) => {
-    const [count, setCount] = React.useState(1);
-    const { Data, setPages } = props;
+    const { Data, setPages, status, setSearch, count, setCount } = props;
+
+    if (status === 'loading')
+        return null
+    // console.log(Data,'this is Data')
     return (
         <>
         <div className='cardList'>
@@ -28,13 +31,15 @@ const CardLoad = (props) => {
             <div className='pages'>
                 {Data.previous == null ? null : <button
                     onClick={() => {
+                        setSearch('')
                         setPages(Data.previous);
-                        setCount(count-1)
+                        setCount(count - 1);
                 }}>Previous</button>}
                     <h1>{count}</h1>
                 {Data.next == null ? null : <button
                     onClick={
-                        () =>{
+                        () => {
+                            setSearch('')
                             setPages(Data.next);
                             setCount(count + 1);
                         }
